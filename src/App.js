@@ -1,17 +1,21 @@
-import React, {Component} from 'react';
-import { BrowserRouter} from 'react-router-dom'
+import React from 'react';
 import Navbar from './components/layout/Navbar'
+import Register from './components/pages/Register';
 
-class App extends Component {
-    render() {
-        return (
-            <BrowserRouter>
-                <div className="Page">
-                    <Navbar />
-                </div>
-            </BrowserRouter>
-        );
+class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {isLoggedIn: false};
     }
-}
+  
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        if (isLoggedIn) {
+            return <Navbar />
+        } else {
+            return <Register />;
+        }
+    }
+  }
 
 export default App;
