@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import DashboardIcon from '@material-ui/icons/Assessment';
@@ -17,6 +18,7 @@ import {BrowserRouter, Link, Switch, Route} from 'react-router-dom';
 import Dashboard from '../dashboard/Dashboard'
 import About from '../pages/About'
 import Home from '../pages/Home'
+import Runs from '../pages/Runs/index.js'
 
 const drawerWidth = 240;
 
@@ -79,6 +81,14 @@ export default function ClippedDrawer() {
                     <ListItemText primary={"Home"} />
                   </ListItem>
                 </Link>
+                <Link to="/runs" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <DirectionsRunIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Runs"} />
+                  </ListItem>
+                </Link>
                 <Link to="/dashboard" className={classes.link}>
                   <ListItem button>
                     <ListItemIcon>
@@ -105,6 +115,9 @@ export default function ClippedDrawer() {
             <Switch>
               <Route exact path="/">
                   <Home />
+              </Route>
+              <Route path="/runs">
+                  <Runs />
               </Route>
               <Route path="/dashboard">
                   <Dashboard />
