@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import styles from "./styles.css";
-import {Typography} from "@material-ui/core"
+import {Typography} from "@material-ui/core";
 
 class Home extends Component {
     render(){
