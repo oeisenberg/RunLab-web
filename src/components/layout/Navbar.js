@@ -21,7 +21,6 @@ import Dashboard from '../dashboard/Dashboard'
 import About from '../pages/About'
 import Home from '../pages/Home'
 import Runs from '../pages/Runs/index.js'
-import orange from '@material-ui/core/colors/orange';
 
 const drawerWidth = 240;
 
