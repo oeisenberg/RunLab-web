@@ -130,12 +130,15 @@ export default function ClippedDrawer() {
               <Switch>
                 <Route exact path="/">
                     <Home />
-                </Route>
-                <Route path="/runs">
-                    <Runs />
+                    {/* summary of recent activity */}
                 </Route>
                 <Route path="/dashboard">
                     <Dashboard />
+                    {/* analytics of activity */}
+                </Route>
+                <Route path="/runs">
+                    <Runs /> 
+                    {/* Details per run */}
                 </Route>
                 <Route path="/about">
                     <About />
