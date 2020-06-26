@@ -8,6 +8,16 @@
     padding-right: 10%;
 }
 
+.fullPage{
+    width:100%;
+    height:100%;
+
+    padding-top: 70px;
+    padding-bottom:10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .run {
     margin-top: 10px;
     padding-left: 10px;
