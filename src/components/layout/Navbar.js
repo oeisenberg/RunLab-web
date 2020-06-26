@@ -96,20 +96,20 @@ export default function ClippedDrawer() {
                       <ListItemText primary={"Home"} />
                     </ListItem>
                   </Link>
-                  <Link to="/runs" className={classes.link}>
-                    <ListItem button>
-                      <ListItemIcon>
-                        <DirectionsRunIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={"Runs"} />
-                    </ListItem>
-                  </Link>
                   <Link to="/dashboard" className={classes.link}>
                     <ListItem button>
                       <ListItemIcon>
                         <DashboardIcon />
                       </ListItemIcon>
                       <ListItemText primary={"Dashboard"} />
+                    </ListItem>
+                  </Link>
+                  <Link to="/runs" className={classes.link}>
+                    <ListItem button>
+                      <ListItemIcon>
+                      <DirectionsRunIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={"Runs"} />
                     </ListItem>
                   </Link>
                 </List>
