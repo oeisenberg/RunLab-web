@@ -126,7 +126,6 @@ export default function ClippedDrawer() {
                 </List>
               </div>
             </Drawer>
-            <div className="contents">
               <Switch>
                 <Route exact path="/">
                     <Home />
@@ -144,7 +143,6 @@ export default function ClippedDrawer() {
                     <About />
                 </Route>
               </Switch>
-          </div>
         </div>
       </BrowserRouter>
     </ThemeProvider>
