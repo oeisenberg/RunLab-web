@@ -1,17 +1,58 @@
-import React, {Component} from 'react'
-import styles from "../pages/styles.css";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import {Typography} from "@material-ui/core"
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
-class Dashboard extends Component {
-    render(){
-        return(
-            <div className={styles.contents}>
-                <Typography variant="h3" component="h1">
-                    Dashboard Page
-                </Typography>
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      elevation: 1,
+      height:theme.spacing(10),
+    },
+  }));
+
+export default function Dashboard() {
+    const classes = useStyles();
+
+    return(
+        <div className="fullPage">
+            <div className={classes.root}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="overline">
+                                Graphical Element
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="overline">
+                                Graphical Element A
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="overline">
+                                Graphical Element B
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="overline">
+                                Graphical Element C
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                </Grid>
             </div>
-        )
-    }
+        </div>
+    )
 }
-
-export default Dashboard;
