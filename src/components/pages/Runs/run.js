@@ -1,30 +1,36 @@
 import React, {Component} from 'react';
-import styles from "../styles.css";
-import {Typography} from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import {Typography, Paper} from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 
-class Run extends Component {
-    render(){
-        return(
-            <div>
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        <Typography variant="h6" align="left">
-                            Run Title
-                        </Typography>
-                        <Typography variant="body1" align="left">
-                            Run summary
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Typography variant="overline">
-                            map img
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </div>
-        )
-    }
-}
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'left',
+      elevation: 1,
+    },
+}));
 
-export default Run;
+export default function Run(props) {
+    const classes = useStyles();
+
+    return(
+        <div class="fullPage">
+        <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Typography variant="h3" component="h1">
+                        {props.runtitle}
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    Content
+                </Grid>
+            </Grid>
+        </div>
+        </div>
+    )
+}
