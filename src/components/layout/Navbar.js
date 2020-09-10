@@ -126,23 +126,23 @@ export default function ClippedDrawer() {
                 </List>
               </div>
             </Drawer>
-              <Switch>
-                <Route exact path="/">
-                    <Home />
-                    {/* summary of recent activity */}
-                </Route>
-                <Route path="/dashboard">
-                    <Dashboard />
-                    {/* analytics of activity */}
-                </Route>
-                <Route path="/runs">
-                    <Runs /> 
-                    {/* Details per run */}
-                </Route>
-                <Route path="/about">
-                    <About />
-                </Route>
-              </Switch>
+            <Switch>
+              <Route exact path="/">
+                  <Home />
+                  {/* summary of recent activity */}
+              </Route>
+              <Route path="/dashboard">
+                  <Dashboard />
+                  {/* analytics of activity */}
+              </Route>
+              <Route path="/runs">
+                  <Runs /> 
+                  {/* Details per run */}
+              </Route>
+              <Route path="/about">
+                  <About />
+              </Route>
+            </Switch>
         </div>
       </BrowserRouter>
     </ThemeProvider>
