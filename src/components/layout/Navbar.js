@@ -16,11 +16,12 @@ import HomeIcon from '@material-ui/icons/Home';
 import DashboardIcon from '@material-ui/icons/Assessment';
 import AboutIcon from '@material-ui/icons/Info';
 import {BrowserRouter, Link, Switch, Route} from 'react-router-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Dashboard from '../dashboard/Dashboard'
-import About from '../pages/About'
-import Home from '../pages/Home'
-import Runs from '../pages/Runs/index.js'
+import Dashboard from '../dashboard/Dashboard';
+import About from '../pages/About';
+import Home from '../pages/Home';
+import Runs from '../pages/Runs/index';
+import RefreshBtn from '../pages/RefreshBtn';
+import Box from '@material-ui/core/Box';
 
 const drawerWidth = 240;
 
@@ -73,9 +74,12 @@ export default function ClippedDrawer() {
           <CssBaseline />
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-              <Typography variant="h6" noWrap>
-                Run Lab
-              </Typography>
+              <Box display='flex' flexGrow={1}>
+                <Typography variant="h6" noWrap>
+                 Run Lab
+                 </Typography>
+              </Box>
+              <Typography inline variant="body1" align="right"><RefreshBtn /></Typography>
             </Toolbar>
           </AppBar>
             <Drawer
@@ -128,7 +132,7 @@ export default function ClippedDrawer() {
             </Drawer>
             <Switch>
               <Route exact path="/">
-                  <Home />
+                <Home />
                   {/* summary of recent activity */}
               </Route>
               <Route path="/dashboard">
