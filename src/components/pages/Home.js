@@ -28,36 +28,36 @@ export default function Home() {
     return(
         <div className="fullPage">
         <div className={classes.root}>
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <Paper className={classes.lgGraphicalElement}>
-                    <Typography variant="overline">
-                        Graphical Element
-                    </Typography>
-                </Paper>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Paper className={classes.lgGraphicalElement}>
+                        <Typography variant="overline">
+                            Graphical Element
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={4}>
+                    <Paper className={classes.paper}>
+                        <Typography variant="overline">
+                            Graphical Element A
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={4}>
+                    <Paper className={classes.paper}>
+                        <Typography variant="overline">
+                            Graphical Element B
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={4}>
+                    <Paper className={classes.paper}>
+                        <Typography variant="overline">
+                            Graphical Element C
+                        </Typography>
+                    </Paper>
+                </Grid> 
             </Grid>
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                    <Typography variant="overline">
-                        Graphical Element A
-                    </Typography>
-                </Paper>
-            </Grid>
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                    <Typography variant="overline">
-                        Graphical Element B
-                    </Typography>
-                </Paper>
-            </Grid>
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                    <Typography variant="overline">
-                        Graphical Element C
-                    </Typography>
-                </Paper>
-            </Grid>
-        </Grid>
         </div>
         </div>
     )
