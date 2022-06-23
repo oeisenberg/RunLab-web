@@ -1,33 +1,31 @@
 import React from 'react';
-import {BrowserRouter, Link, Switch, Route, useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import {Typography, Paper} from "@material-ui/core";
-import Grid from '@material-ui/core/Grid';
+import {BrowserRouter, Link, Routes, Route} from 'react-router-dom';
+
+import {Typography, Paper} from "@mui/material";
+import Grid from '@mui/material/Grid';
 import Run from "./run.js";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'left',
-      elevation: 1,
-    },
-    link: {
-        textDecoration: 'none',
-        color: theme.palette.text.primary
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//       flexGrow: 1,
+//     },
+//     paper: {
+//       padding: theme.spacing(2),
+//       textAlign: 'left',
+//       elevation: 1,
+//     },
+//     link: {
+//         textDecoration: 'none',
+//         color: theme.palette.text.primary
+//     }
+// }));
 
 export default function RunSummary(props) {
-    const classes = useStyles();
-    const history = useHistory();
 
     return(
         <BrowserRouter>
-            <Link to={'/runs/run/'+props.runtitle} className={classes.link}>
-                <Paper className={classes.paper}>
+            <Link to={'/runs/run/'+props.runtitle}>
+                <Paper>
                     <div>
                         <Grid container spacing={2}>
                             <Grid item xs={8}>
@@ -47,13 +45,13 @@ export default function RunSummary(props) {
                     </div>
                 </Paper>
             </Link>
-            <Switch>
+            <Routes>
                 <Route exact path={'/runs/run/'+props.runtitle}>
                     {/* {history.push('/runs/run/RunTitle')} */}
                     {/* work on redirecting to new page not component (hence dd list effect) */}
                     <Run runtitle={props.runtitle}/>
                 </Route>
-            </Switch>
+            </Routes>
         </BrowserRouter>
     )
 }

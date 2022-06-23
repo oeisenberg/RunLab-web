@@ -1,26 +1,24 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Typography} from "@material-ui/core";
+import {Typography} from "@mui/material";
 import RunSummary from "./runsummary.js";
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'left',
-      elevation: 1,
-    },
-}));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//       flexGrow: 1,
+//     },
+//     paper: {
+//       padding: theme.spacing(2),
+//       textAlign: 'left',
+//       elevation: 1,
+//     },
+// }));
 
 export default function Runs() {
-    const classes = useStyles();
 
     return(
-        <div class="contents">
-            <div className={classes.root}>
+        <div>
+            <div>
 
             <Grid container spacing={3}>
                 <Grid item xs={12}>

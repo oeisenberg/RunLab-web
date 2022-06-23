@@ -82,11 +82,11 @@ class App extends React.Component {
     }
 
     render() {
-        if(this.state.isLoggedIn){
-            return <Navbar />;
-        } else {
+        // if(this.state.isLoggedIn){
+        //     return <Navbar />;
+        // } else {
             return <Register />;
-        }
+        // }
     }
 }
 

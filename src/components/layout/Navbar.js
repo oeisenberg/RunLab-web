@@ -1,98 +1,49 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import DashboardIcon from '@material-ui/icons/Assessment';
-import AboutIcon from '@material-ui/icons/Info';
-import {BrowserRouter, Link, Switch, Route} from 'react-router-dom';
+import Drawer from '@mui/material/Drawer';
+import AppBar from '@mui/material/AppBar';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import ListItemText from '@mui/material/ListItemText';
+import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Assessment';
+import AboutIcon from '@mui/icons-material/Info';
+import {BrowserRouter, Link, Routes, Route} from 'react-router-dom';
 import Dashboard from '../dashboard/Dashboard';
 import About from '../pages/About';
 import Home from '../pages/Home';
 import Runs from '../pages/Runs/index';
 import RefreshBtn from '../pages/RefreshBtn';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContainer: {
-    overflow: 'auto',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.text.primary
-  }
-}));
-
-export default function ClippedDrawer() {
-  const classes = useStyles();
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)'); // need to read up on this
-  const prefersDarkMode = false;
-
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
+export default function Navbar() {
 
   return (
-    <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <div className={classes.root}>
+        <div>
           <CssBaseline />
-          <AppBar position="fixed" className={classes.appBar}>
+          <AppBar position="fixed">
             <Toolbar>
               <Box display='flex' flexGrow={1}>
                 <Typography variant="h6" noWrap>
                  Run Lab
                  </Typography>
               </Box>
-              <Typography inline variant="body1" align="right"><RefreshBtn /></Typography>
+              {/* <Typography inline variant="body1" align="right"><RefreshBtn /></Typography> */}
             </Toolbar>
           </AppBar>
             <Drawer
-              className={classes.drawer}
               variant="permanent"
-              classes={{
-                paper: classes.drawerPaper,
-              }}
             >
               <Toolbar />
-              <div className={classes.drawerContainer}>
+              <div>
                 <List>
-                  <Link to="/" className={classes.link}>
+                  <Link to="/">
                     <ListItem button>
                       <ListItemIcon>
                         <HomeIcon />
@@ -100,7 +51,7 @@ export default function ClippedDrawer() {
                       <ListItemText primary={"Home"} />
                     </ListItem>
                   </Link>
-                  <Link to="/dashboard" className={classes.link}>
+                  <Link to="/dashboard">
                     <ListItem button>
                       <ListItemIcon>
                         <DashboardIcon />
@@ -108,7 +59,7 @@ export default function ClippedDrawer() {
                       <ListItemText primary={"Dashboard"} />
                     </ListItem>
                   </Link>
-                  <Link to="/runs" className={classes.link}>
+                  <Link to="/runs">
                     <ListItem button>
                       <ListItemIcon>
                       <DirectionsRunIcon />
@@ -119,7 +70,7 @@ export default function ClippedDrawer() {
                 </List>
                 <Divider />
                 <List>
-                  <Link to="/about" className={classes.link}>
+                  <Link to="/about">
                       <ListItem button>
                         <ListItemIcon>
                           <AboutIcon />
@@ -130,25 +81,24 @@ export default function ClippedDrawer() {
                 </List>
               </div>
             </Drawer>
-            <Switch>
+            <Routes>
               <Route exact path="/">
                 <Home />
                   {/* summary of recent activity */}
               </Route>
               <Route path="/dashboard">
-                  <Dashboard />
+                  {/* <Dashboard /> */}
                   {/* analytics of activity */}
               </Route>
               <Route path="/runs">
-                  <Runs /> 
+                  {/* <Runs />  */}
                   {/* Details per run */}
               </Route>
               <Route path="/about">
-                  <About />
+                  {/* <About /> */}
               </Route>
-            </Switch>
+            </Routes>
         </div>
       </BrowserRouter>
-    </ThemeProvider>
   );
 }

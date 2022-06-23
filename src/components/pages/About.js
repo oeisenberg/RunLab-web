@@ -1,27 +1,15 @@
 import React from 'react'
 import styles from "./styles.css";
-import {Typography} from "@material-ui/core"
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      elevation: 1,
-    },
-  }));
+import {Typography} from "@mui/material"
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 export default function About() {
-    const classes = useStyles();
+    // const classes = useStyles();
 
     return(
         <div class="contents">
-        <div className={classes.root}>
+        <div>
         <Grid container spacing={3}>
             <Grid item xs={12}>
             <Typography variant="h3" component="h1">
@@ -29,7 +17,7 @@ export default function About() {
             </Typography>
             </Grid>
             <Grid item xs={12}> 
-                <Paper className={classes.paper}>
+                <Paper>
                     <Typography variant="body1" align="left" gutterBottom>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed tortor ac erat commodo cursus vel ac orci. Suspendisse id malesuada leo. Maecenas porta mauris ut volutpat accumsan. Mauris ultricies commodo justo eu efficitur. Nunc fringilla efficitur hendrerit. Suspendisse pulvinar metus eget nibh lacinia, quis cursus nulla faucibus. Vivamus id eros a odio malesuada vestibulum eu ut velit. Nulla gravida, erat id aliquam accumsan, ante nibh imperdiet dui, id facilisis augue sem nec tortor. Sed ex velit, iaculis quis augue id, condimentum interdum urna. Sed vehicula bibendum enim. Aliquam elit dui, facilisis quis scelerisque a, scelerisque vel risus. Mauris sollicitudin sit amet neque blandit viverra. Nulla elit nibh, tempor id porttitor ac, mollis eu massa.
                     </Typography>
