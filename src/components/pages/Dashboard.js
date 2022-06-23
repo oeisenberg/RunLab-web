@@ -2,6 +2,7 @@ import React from 'react'
 import {Typography} from "@mui/material"
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Navbar from '../layout/Navbar';
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -19,6 +20,7 @@ export default function Dashboard() {
 
     return(
         <div className="fullPage">
+            <Navbar />
             <div>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
