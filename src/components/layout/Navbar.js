@@ -67,7 +67,7 @@ function Navbar() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Clipped drawer
+            Run Lab
           </Typography>
         </Toolbar>
       </AppBar>
