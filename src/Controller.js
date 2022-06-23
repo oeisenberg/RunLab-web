@@ -2,7 +2,30 @@ import React from 'react';
 import axios from 'axios';
 import App from './App'
 import Register from './components/pages/Register';
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+const themeLight = createTheme({
+    palette: {
+        mode: 'light',
+        background: {
+            default: "#e4f0e2"
+        }
+    }
+  });
+  
+  const themeDark = createTheme({
+    palette: {
+        mode: 'dark',
+        background: {
+            default: "#222222"
+        },
+        text: {
+            primary: "#ffffff"
+        }
+    }
+  });
+  
 async function makeQuery(config){
     const promise = new Promise(function(resolve, reject){
         axios(config)
@@ -57,15 +80,19 @@ async function checkLogInStatus() {
     });
 }
 
-class Controller extends React.Component {
-    constructor(props) {
-        super(props);
+// class Controller extends React.Component {
+//     constructor(props) {
+//         super(props);
         
-        this.state = {
-            isLoggedIn: false,
-        };
-    }
+//         this.state = {
+//             isLoggedIn: false,
+//         };
+//     }
     
+    
+// }
+
+export default function Controller() {
     // async componentDidMount() {
     //     var status = false;
     //     try{
@@ -80,14 +107,18 @@ class Controller extends React.Component {
     //     }
     //     this.setState({isLoggedIn:status});
     // }
+    const [light, setLight] = React.useState(true);
 
-    render() {
-        // if(this.state.isLoggedIn){
-            return <App />;
-        // } else {
-            // return <Register />;
-        // }
-    }
+    return (
+        //{light ? themeLight : themeDark}
+        <ThemeProvider theme={themeDark}> 
+            <CssBaseline />
+            {/* if(this.state.isLoggedIn){
+             return <App />;
+             } else {
+                return <Register />;
+             } */}
+            <Register />;
+        </ThemeProvider>
+    )
 }
-
-export default Controller;
