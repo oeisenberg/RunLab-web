@@ -1,93 +1,30 @@
-import React from 'react';
-import axios from 'axios';
-import Navbar from './components/layout/Navbar'
-import Register from './components/pages/Register';
+// import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./components/pages/Home";
+import DashboardPage from "./components/pages/Dashboard";
+import RunsPage from "./components/pages/Runs";
+import AboutPage from "./components/pages/About";
 
-async function makeQuery(config){
-    const promise = new Promise(function(resolve, reject){
-        axios(config)
-        .then(function (response) {
-            if (response.data.status !== 200){
-                console.log(response);
-                reject("Error");
-            } else {
-                resolve("Success");
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            reject("Error");
-        });
-    });
-    return promise;
-}
-
-async function writeToKeysFile(code) {
-    var data = JSON.stringify({"code":code});
-    var config = {
-        method: 'post',
-        url: 'http://localhost:3000/Runlab/oauth',
-        headers: { 
-          'Content-Type': 'application/json',
-        },
-        data : data
-    };
-
-    return makeQuery(config).then(function() {
-        return true;
-    }, function(err) {
-        return false;
-    });
-}
-
-async function checkLogInStatus() {
-    var config = {
-        method: 'get',
-        url: 'http://localhost:3000/Runlab/oauth',
-        headers: { 
-          'Content-Type': 'application/json',
-        },
-    };
-
-    return makeQuery(config).then(function(){
-        console.log("Registered");
-        return true;
-    }, function(err) {
-        return false;
-    });
-}
-
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            isLoggedIn: false,
-        };
-    }
-    
-    async componentDidMount() {
-        var status = false;
-        try{
-            const url = window.location.search;
-            var r = url.split("&");
-            var code = r[1].split("=")[1];
-            var scopes = r[2].split("=")[1]; // check correct scopes accepted
-
-            status = await writeToKeysFile(code);
-        } catch (err){
-            status = await checkLogInStatus();
-        }
-        this.setState({isLoggedIn:status});
-    }
-
-    render() {
-        // if(this.state.isLoggedIn){
-        //     return <Navbar />;
-        // } else {
-            return <Register />;
-        // }
-    }
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/Home" element={<HomePage />}>
+          <Route index element={<HomePage />} />
+        </Route>
+        <Route path="/Dashboard" element={<DashboardPage />}>
+          <Route index element={<DashboardPage />} />
+        </Route>
+        <Route path="/Runs" element={<RunsPage />}>
+          <Route index element={<RunsPage />} />
+        </Route>
+        <Route path="/About" element={<AboutPage />}>
+          <Route index element={<AboutPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
