@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
+import Avatar from "@mui/material/Avatar";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
@@ -16,18 +16,20 @@ import AboutIcon from "@mui/icons-material/Info";
 import { Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 
+import UserProfile from "./UserProfile";
+
 const drawerWidth = 240;
 
 function Navbar() {
 
   function matchIcon(idx) {
-    if (idx == 0) {
+    if (idx === 0) {
       return <HomeIcon />;
-    } else if (idx == 1) {
+    } else if (idx === 1) {
       return <DashboardIcon />;
-    } else if (idx == 2) {
+    } else if (idx === 2) {
       return <DirectionsRunIcon />;
-    } else if (idx == 3) {
+    } else if (idx === 3) {
       return <AboutIcon />;
     }
   }
@@ -45,6 +47,7 @@ function Navbar() {
           <Typography variant="h6" noWrap component="div">
             Run Lab
           </Typography>
+          <UserProfile/>
         </Toolbar>
       </AppBar>
       <Drawer
