@@ -1,6 +1,6 @@
-// import "./App.css";
+import "./Styles.css";
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./components/pages/Home";
 import DashboardPage from "./components/pages/Dashboard";
 import RunsPage from "./components/pages/Runs/index";
@@ -10,8 +10,8 @@ import Navbar from "./components/layout/Navbar";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <div class="Page-Content">
+      <Navbar/>
+      <div className="Page-Content">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/Home" element={<HomePage />}></Route>
