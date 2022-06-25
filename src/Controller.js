@@ -111,14 +111,14 @@ export default function Controller() {
 
     return (
         //{light ? themeLight : themeDark}
-        <ThemeProvider theme={themeDark}> 
-            <CssBaseline />
-            {/* if(this.state.isLoggedIn){
+        // <ThemeProvider theme={themeDark}> 
+            // <CssBaseline />
+            /* if(this.state.isLoggedIn){
              return <App />;
              } else {
                 return <Register />;
-             } */}
-            <Register />;
-        </ThemeProvider>
+             } */
+            
+        <App />
     )
 }
