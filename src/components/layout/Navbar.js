@@ -8,21 +8,12 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemButton from "@mui/material/ListItemButton";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Assessment";
-import MenuIcon from "@mui/icons-material/Menu";
 import AboutIcon from "@mui/icons-material/Info";
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import muiLink from '@mui/material/Link';
-import Dashboard from "../pages/Dashboard";
-import About from "../pages/About";
-import Home from "../pages/Home";
-import Runs from "../pages/Runs/index";
-import RefreshBtn from "../pages/RefreshBtn";
+import { Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 
 const drawerWidth = 240;
@@ -40,21 +31,6 @@ function Navbar() {
       return <AboutIcon />;
     }
   }
-
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {["Home", "Dashboard", "Runs", "About"].map((text, index) => (
-          <ListItem key={text} button component={muiLink} href={text}>
-            <ListItemIcon>{matchIcon(index)}</ListItemIcon>
-            <ListItemText primary={text} />      
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -86,7 +62,7 @@ function Navbar() {
       <Box sx={{ overflow: "auto" }}>
       <List>
         {["Home", "Dashboard", "Runs", "About"].map((text, index) => (
-          <ListItem key={text} button component={muiLink} href={text}>
+          <ListItem key={text} button component={Link} to={text}>
             <ListItemIcon>{matchIcon(index)}</ListItemIcon>
             <ListItemText primary={text} />      
           </ListItem>
@@ -94,19 +70,11 @@ function Navbar() {
       </List>
       </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
         <Toolbar />
       </Box>
     </Box>
   );
 }
-
-// Navbar.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };
 
 export default Navbar;
