@@ -2,17 +2,6 @@ import React, {Component} from 'react';
 import {Typography, Paper} from "@mui/material";
 import Grid from '@mui/material/Grid';
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     paper: {
-//       padding: theme.spacing(2),
-//       textAlign: 'left',
-//       elevation: 1,
-//     },
-// }));
-
 export default function Run(props) {
 
     return(
