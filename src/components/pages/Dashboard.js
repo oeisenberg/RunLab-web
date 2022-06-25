@@ -19,8 +19,7 @@ import Navbar from '../layout/Navbar';
 export default function Dashboard() {
 
     return(
-        <div className="fullPage">
-            <Navbar />
+        <div className="Page-Content">
             <div>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>

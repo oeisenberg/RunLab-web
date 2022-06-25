@@ -2,14 +2,12 @@ import React from "react";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Navbar from '../layout/Navbar';
 
 export default function About() {
 
   return (
-    <div class="contents">
-        <Navbar />
-      <div>
+    <div>
+
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h3" component="h1">
@@ -79,7 +77,7 @@ export default function About() {
             </Paper>
           </Grid>
         </Grid>
-      </div>
+  
     </div>
   );
 }
