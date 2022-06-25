@@ -26,10 +26,18 @@ function UserProfile() {
   });
 
   if (profile === null) {
-    return <Avatar></Avatar>;
+    return (
+      <Avatar
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
+      />
+    );
   } else {
     return (
-      <Avatar alt={profile.username} src={profile.profile}>
+      <Avatar
+        alt={profile.username}
+        src={profile.profile}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
+      >
         {profile.username}
       </Avatar>
     );

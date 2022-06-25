@@ -13,7 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Assessment";
 import AboutIcon from "@mui/icons-material/Info";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 
 import UserProfile from "./UserProfile";
@@ -21,7 +21,6 @@ import UserProfile from "./UserProfile";
 const drawerWidth = 240;
 
 function Navbar() {
-
   function matchIcon(idx) {
     if (idx === 0) {
       return <HomeIcon />;
@@ -40,14 +39,13 @@ function Navbar() {
       <AppBar
         position="fixed"
         sx={{
-          zIndex: (theme) => theme.zIndex.drawer + 1
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h4" noWrap component="div">
             Run Lab
           </Typography>
-          <UserProfile/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -62,18 +60,21 @@ function Navbar() {
         }}
       >
         <Toolbar />
-      <Box sx={{ overflow: "auto" }}>
-      <List>
-        {["Home", "Dashboard", "Runs", "About"].map((text, index) => (
-          <ListItem key={text} button component={Link} to={text}>
-            <ListItemIcon>{matchIcon(index)}</ListItemIcon>
-            <ListItemText primary={text} />      
-          </ListItem>
-        ))}
-      </List>
-      </Box>
+        <Box sx={{ overflow: "auto" }}>
+          <List>
+            {["Home", "Dashboard", "Runs", "About"].map((text, index) => (
+              <ListItem key={text} button component={Link} to={text}>
+                <ListItemIcon>{matchIcon(index)}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
+        <Box>
+          <UserProfile/>
+        </Box>
         <Toolbar />
       </Box>
     </Box>
