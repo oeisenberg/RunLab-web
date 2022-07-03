@@ -19,7 +19,7 @@ import UserProfile from "./UserProfile";
 
 const drawerWidth = 240;
 
-function Navbar() {
+function Navbar(props) {
   function matchIcon(idx) {
     if (idx === 0) {
       return <HomeIcon />;
@@ -72,7 +72,7 @@ function Navbar() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Box>
-          <UserProfile/>
+          <UserProfile Profile={props.Profile}/>
         </Box>
         <Toolbar />
       </Box>
