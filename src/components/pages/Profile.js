@@ -1,42 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "../layout/BasicCard";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
+import Grid from '@mui/material/Grid';
 
-export default function Profile() {
-
-  const [statistics, setStatistics] = useState(null);
-
-  useEffect(() => {
-    if (statistics === null) {
-      // queryRunLab("");
-    }
-  });
-
-  const queryRunLab = async (query) => {
-    try {
-      await fetch("http://localhost:8080/Runlab/" + query)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data.body);
-          setStatistics(data.body);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+function Profile(props) {
+  if (props.Statistics === null) {
+    return <div></div>;
+  }
 
   return (
     <div>
-      <br/>
+      <br />
       <Typography variant="h3" component="h1">
         Profile
       </Typography>
-      <br/>
-      <Card width={300} title="" body="" />
-       
-  
+      <br />
+
+      <Grid container spacing={{ xs: 2, sm: 2, md:2 }} columnSpacing={{ xs: 2, sm: 2, md:2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        {Object.keys(props.Statistics).map((key, idx) => (
+          <Grid item key={key}>
+            <Card 
+              width={300}
+              height={150}
+              title={key}
+              body={props.Statistics[key].count}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    
     </div>
   );
 }
+
+export default Profile;
