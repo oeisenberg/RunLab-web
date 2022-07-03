@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import styled from "styled-components";
@@ -11,31 +11,9 @@ const StyledAvatar = styled(Avatar)`
       }
   `;
 
-function UserProfile() {
-  const [profile, setProfile] = useState(null);
+function UserProfile(props) {
 
-  const queryRunLab = async (query) => {
-    try {
-      await fetch("http://localhost:8080/Runlab/" + query)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data.body);
-          setProfile(data.body);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    if (profile === null) {
-      queryRunLab("getAtheleteProfile");
-    }
-  });
-
-  if (profile === null) {
+  if (props.Profile === null) {
     return (
       <StyledAvatar
         sx={{
@@ -56,8 +34,8 @@ function UserProfile() {
           mr: 3,
         }}
       >
-        <StyledAvatar alt={profile.username} src={profile.profile}>
-          {profile.username}
+        <StyledAvatar alt={props.Profile.username} src={props.Profile.profile}>
+          {props.Profile.username}
         </StyledAvatar>
       </IconButton>
     );
