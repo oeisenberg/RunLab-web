@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledAvatar = styled(Avatar)`
+      &:hover {
+        transform: scale(1.1);
+      }
+      }
+  `;
 
 function UserProfile() {
   const [profile, setProfile] = useState(null);
@@ -27,19 +37,29 @@ function UserProfile() {
 
   if (profile === null) {
     return (
-      <Avatar
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
+      <StyledAvatar
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          float: "right",
+          mr: 3,
+        }}
       />
     );
   } else {
     return (
-      <Avatar
-        alt={profile.username}
-        src={profile.profile}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
+      <IconButton
+        component={Link}
+        to={"Profile"}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          float: "right",
+          mr: 3,
+        }}
       >
-        {profile.username}
-      </Avatar>
+        <StyledAvatar alt={profile.username} src={profile.profile}>
+          {profile.username}
+        </StyledAvatar>
+      </IconButton>
     );
   }
 }
