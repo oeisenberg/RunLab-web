@@ -5,6 +5,7 @@ import HomePage from "./components/pages/Home";
 import DashboardPage from "./components/pages/Dashboard";
 import RunsPage from "./components/pages/Runs/index";
 import AboutPage from "./components/pages/About";
+import ProfilePage from "./components/pages/Profile";
 import Navbar from "./components/layout/Navbar";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />}></Route>
           <Route path="/Runs" element={<RunsPage />}></Route>
           <Route path="/About" element={<AboutPage />}></Route>
+          <Route path="/Profile" element={<ProfilePage />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
