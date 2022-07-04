@@ -70,9 +70,17 @@ function Navbar(props) {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1 }}>
-        <Box>
-          <UserProfile Profile={props.Profile}/>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, mb:1}}
+        display="flex"
+        justifyContent="flex-end"
+      >
+        <Box
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
+          position={"fixed"}
+        >
+          <UserProfile Profile={props.Profile} />
         </Box>
         <Toolbar />
       </Box>
