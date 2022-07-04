@@ -3,19 +3,6 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
-import PoolIcon from "@mui/icons-material/Pool";
-
-const icon = (title) => {
-  if (title.toLowerCase().includes("ride")) {
-    return <DirectionsBikeIcon sx={{p:10}}/>;
-  } else if (title.toLowerCase().includes("run")) {
-    return <DirectionsRunIcon />;
-  } else if (title.toLowerCase().includes("swim")) {
-    return <PoolIcon />;
-  }
-};
 
 export default function DataCard(props) {
   return (

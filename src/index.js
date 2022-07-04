@@ -6,15 +6,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const themeLight = createTheme({
-  palette: {
-      mode: 'light',
-      background: {
-          default: "#e4f0e2"
-      }
-  }
-});
-
 const themeDark = createTheme({
   palette: {
       mode: 'dark',
@@ -28,7 +19,7 @@ const themeDark = createTheme({
 });
 
 root.render(
-  // was making componets mount x2
+  // Note: Was making components mount twice
   //<React.StrictMode>
     <ThemeProvider theme={themeDark}> 
       <CssBaseline />
