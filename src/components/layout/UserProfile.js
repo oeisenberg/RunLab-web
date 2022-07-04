@@ -1,45 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+import Box from "@mui/material/Box";
 
-function UserProfile() {
-  const [profile, setProfile] = useState(null);
+const StyledAvatar = styled(Avatar)`
+      &:hover {
+        transform: scale(1.1);
+      }
+      }
+  `;
 
-  const queryRunLab = async (query) => {
-    try {
-      await fetch("http://localhost:8080/Runlab/" + query)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data.body);
-          setProfile(data.body);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+function UserProfile(props) {
 
-  useEffect(() => {
-    if (profile === null) {
-      queryRunLab("getAtheleteProfile");
-    }
-  });
-
-  if (profile === null) {
+  if (props.Profile === null) {
     return (
-      <Avatar
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
-      />
+      <Box sx={{mt:1, mr:4 }}>
+        <Avatar/>
+      </Box>
+    );
+  } else if (useLocation().pathname === "/Profile") {
+    return (
+      <Box sx={{mt:1, mr:4 }}>
+        <Avatar alt={props.Profile.username} src={props.Profile.profile}>
+            {props.Profile.username}
+        </Avatar>
+      </Box>
     );
   } else {
     return (
-      <Avatar
-        alt={profile.username}
-        src={profile.profile}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, float: "right", mr:3 }}
+      <IconButton
+        component={Link}
+        to={"Profile"}
+        sx={{mr:3 }}
       >
-        {profile.username}
-      </Avatar>
+        <StyledAvatar alt={props.Profile.username} src={props.Profile.profile}>
+          {props.Profile.username}
+        </StyledAvatar>
+       </IconButton>
     );
   }
 }

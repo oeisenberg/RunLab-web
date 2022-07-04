@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
@@ -20,7 +19,7 @@ import UserProfile from "./UserProfile";
 
 const drawerWidth = 240;
 
-function Navbar() {
+function Navbar(props) {
   function matchIcon(idx) {
     if (idx === 0) {
       return <HomeIcon />;
@@ -71,9 +70,17 @@ function Navbar() {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
-        <Box>
-          <UserProfile/>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, mb:1}}
+        display="flex"
+        justifyContent="flex-end"
+      >
+        <Box
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
+          position={"fixed"}
+        >
+          <UserProfile Profile={props.Profile} />
         </Box>
         <Toolbar />
       </Box>
