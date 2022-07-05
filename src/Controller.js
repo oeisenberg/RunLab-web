@@ -1,84 +1,72 @@
-import React from 'react';
-// import axios from 'axios';
-import App from './App'
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import App from './App';
+import Register from './components/pages/Register';
   
-// async function makeQuery(config){
-//     const promise = new Promise(function(resolve, reject){
-//         axios(config)
-//         .then(function (response) {
-//             if (response.data.status !== 200){
-//                 console.log(response);
-//                 reject("Error");
-//             } else {
-//                 resolve("Success");
-//             }
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//             reject("Error");
-//         });
-//     });
-//     return promise;
-// }
-
-// async function writeToKeysFile(code) {
-//     var data = JSON.stringify({"code":code});
-//     var config = {
-//         method: 'post',
-//         url: 'http://localhost:3000/Runlab/oauth',
-//         headers: { 
-//           'Content-Type': 'application/json',
-//         },
-//         data : data
-//     };
-
-//     return makeQuery(config).then(function() {
-//         return true;
-//     }, function(err) {
-//         return false;
-//     });
-// }
-
-// async function checkLogInStatus() {
-//     var config = {
-//         method: 'get',
-//         url: 'http://localhost:3000/Runlab/oauth',
-//         headers: { 
-//           'Content-Type': 'application/json',
-//         },
-//     };
-
-//     return makeQuery(config).then(function(){
-//         console.log("Registered");
-//         return true;
-//     }, function(err) {
-//         return false;
-//     });
-// }
-
-export default function Controller() {
-    // async componentDidMount() {
-    //     var status = false;
-    //     try{
-    //         const url = window.location.search;
-    //         var r = url.split("&");
-    //         var code = r[1].split("=")[1];
-    //         var scopes = r[2].split("=")[1]; // check correct scopes accepted
-
-    //         status = await writeToKeysFile(code);
-    //     } catch (err){
-    //         status = await checkLogInStatus();
-    //     }
-    //     this.setState({isLoggedIn:status});
-    // }
-
-    return (
-            /* if(this.state.isLoggedIn){
-             return <App />;
-             } else {
-                return <Register />;
-             } */
-            
-        <App />
-    )
+async function makeQuery(config){
+    const promise = new Promise(function(resolve, reject){
+        axios(config)
+        .then(function (response) {
+            if (response.data.status !== 200){
+                console.log(response);
+                reject("Error");
+            } else {
+                resolve("Success");
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            reject("Error");
+        });
+    });
+    return promise;
 }
+
+function Controller() {
+    const [isLoggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        console.log("isLoggedIn: " + isLoggedIn);
+        if (!isLoggedIn) {
+            try{
+                const url = window.location.search;
+                var r = url.split("&");
+                var code = r[1].split("=")[1];
+                // TODO:
+                // 1 - check correct scopes accepted
+                // var scopes = r[2].split("=")[1]; 
+                setAuthenticationTokens(code)
+            } catch (err){
+                // check cookies ?
+            }
+        }
+    });
+
+    async function setAuthenticationTokens(code) {
+        var config = {
+            method: 'post',
+            url: 'http://localhost:3000/Runlab/oauth',
+            headers: { 
+              'Content-Type': 'application/json',
+            },
+            data: {
+                'code':code
+            }
+        };
+        console.log(code)
+        return makeQuery(config).then(function(){
+            setLoggedIn(true);
+        }, function(err) {
+            setLoggedIn(false);
+        });
+    }
+
+    if(isLoggedIn){
+        return (<App />);
+    } else {
+        return <Register />;
+    }
+    
+}
+
+export default Controller;
