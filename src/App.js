@@ -11,6 +11,7 @@ import Navbar from "./components/layout/Navbar";
 function App() {
   const [userProfileData, setUserProfileData] = useState(null);
   const [userStatisticsData, setUserStatisticsData] = useState(null);
+  const [userActivityData, setUserActivityData] = useState(null);
 
   const queryRunLab = async (query, fcn) => {
     try {
@@ -28,20 +29,33 @@ function App() {
   };
 
   const saveUserProfileData = (data) => {
-    return setUserProfileData(data.body);
+    setUserProfileData(data.body);
   };
 
   const saveUserStatisticsData = (data) => {
-    return setUserStatisticsData(data.body);
+    setUserStatisticsData(data.body);
+  };
+
+  const saveUserActivityData = (data) => {
+    setUserActivityData(data.body);
   };
   
   useEffect(() => {
     if (userProfileData === null) {
       queryRunLab("getAtheleteProfile", saveUserProfileData);
-    }
+    };
 
     if (userProfileData !== null && userStatisticsData === null) {
-      queryRunLab("getAtheleteStatistics/" + userProfileData.id, saveUserStatisticsData);
+        queryRunLab("getAtheleteStatistics/" + userProfileData.id, saveUserStatisticsData);
+
+        // TODO: try figure out a better way of doing this
+        if (userActivityData === null) {
+          var date = new Date();
+          date.setDate(date.getDate() - 28);
+          // use date to get the last 4 wks of activity
+    
+          queryRunLab("refresh", saveUserActivityData);
+        }
     }
   });
 
@@ -51,9 +65,9 @@ function App() {
       <div className="Page-Content">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/Home" element={<HomePage />}></Route>
-          <Route path="/Dashboard" element={<DashboardPage />}></Route>
-          <Route path="/Runs" element={<RunsPage />}></Route>
+          <Route path="/Home" element={<HomePage ActivityData={userActivityData} />}></Route>
+          <Route path="/Dashboard" element={<DashboardPage ActivityData={userActivityData} />}></Route>
+          <Route path="/Runs" element={<RunsPage ActivityData={userActivityData} />}></Route>
           <Route path="/About" element={<AboutPage />}></Route>
           <Route path="/Profile" element={<ProfilePage Statistics={userStatisticsData}/>}></Route>
         </Routes>
