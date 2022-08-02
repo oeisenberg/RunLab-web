@@ -39,7 +39,6 @@ function App() {
 
         queryRunLab("strava-api/athelete/activities", saveUserActivityData);
       }
-  }
   }, [userActivityData]);
   
 
