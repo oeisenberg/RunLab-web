@@ -28,19 +28,18 @@ function App() {
       );
     }
   }, [userProfileData]);
-  
-  const [userActivityData, setUserActivityData] = useState(null);
-  
- useEffect(() => {
-      if (userActivityData === null) {
-        var date = new Date();
-        date.setDate(date.getDate() - 28);
-        // use date to get the last 4 wks of activity
 
-        queryRunLab("athelete/activities", saveUserActivityData);
-      }
+  const [userActivityData, setUserActivityData] = useState(null);
+
+  useEffect(() => {
+    if (userActivityData === null) {
+      var date = new Date();
+      date.setDate(date.getDate() - 28);
+      // use date to get the last 4 wks of activity
+
+      queryRunLab("athelete/activities", saveUserActivityData);
+    }
   }, [userActivityData]);
-  
 
   const queryRunLab = async (query, fcn) => {
     var config = {
@@ -71,7 +70,7 @@ function App() {
 
   const saveUserActivityData = (data) => {
     return setUserActivityData(data);
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -79,9 +78,18 @@ function App() {
       <div className="Page-Content">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/Home" element={<HomePage ActivityData={userActivityData} />}></Route>
-          <Route path="/Dashboard" element={<DashboardPage ActivityData={userActivityData} />}></Route>
-          <Route path="/Runs" element={<RunsPage ActivityData={userActivityData} />}></Route>
+          <Route
+            path="/Home"
+            element={<HomePage ActivityData={userActivityData} />}
+          ></Route>
+          <Route
+            path="/Dashboard"
+            element={<DashboardPage ActivityData={userActivityData} />}
+          ></Route>
+          <Route
+            path="/Runs"
+            element={<RunsPage ActivityData={userActivityData} />}
+          ></Route>
           <Route path="/About" element={<AboutPage />}></Route>
           <Route
             path="/Profile"
