@@ -6,6 +6,7 @@ import DataCard from "../layout/DataCard";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import PoolIcon from "@mui/icons-material/Pool";
+import Plot from "react-plotly.js";
 
 const dataComponent = (key, data) => {
   const isObj = (obj) => {
@@ -80,7 +81,28 @@ function Profile(props) {
         Statistics
       </Typography>
       <br />
-
+      {/* <Plot
+        data={[
+          {
+            values: [props.Statistics["allRunTotals"].count-(props.Statistics["ytdrunTotals"].count+props.Statistics["recentRunTotals"].count), props.Statistics["ytdrunTotals"].count, props.Statistics["recentRunTotals"].count],
+            labels: ['All RunTotals', 'YTD Run Totals', 'Recent RunTotals'],
+            type: "pie",
+            mode: "lines+markers",
+            marker: { color: "red" },
+          }
+        ]}
+        layout={{
+          width: 500,
+          height: 500,
+          title: "All Runs",
+          paper_bgcolor: "rgba(0,0,0,0.1)",
+          plot_bgcolor: "rgba(0,0,0,0)"
+        }}
+        config={{
+          displayModeBar: false
+        }}
+      />
+      <br /> */}
       <Grid
         container
         spacing={{ xs: 2, sm: 2, md: 2 }}

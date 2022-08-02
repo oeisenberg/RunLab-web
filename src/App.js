@@ -28,6 +28,20 @@ function App() {
       );
     }
   }, [userProfileData]);
+  
+  const [userActivityData, setUserActivityData] = useState(null);
+  
+ useEffect(() => {
+      if (userActivityData === null) {
+        var date = new Date();
+        date.setDate(date.getDate() - 28);
+        // use date to get the last 4 wks of activity
+
+        queryRunLab("strava-api/athelete/activities", saveUserActivityData);
+      }
+  }
+  }, [userActivityData]);
+  
 
   const queryRunLab = async (query, fcn) => {
     var config = {
@@ -62,9 +76,9 @@ function App() {
       <div className="Page-Content">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/Home" element={<HomePage />}></Route>
-          <Route path="/Dashboard" element={<DashboardPage />}></Route>
-          <Route path="/Runs" element={<RunsPage />}></Route>
+          <Route path="/Home" element={<HomePage ActivityData={userActivityData} />}></Route>
+          <Route path="/Dashboard" element={<DashboardPage ActivityData={userActivityData} />}></Route>
+          <Route path="/Runs" element={<RunsPage ActivityData={userActivityData} />}></Route>
           <Route path="/About" element={<AboutPage />}></Route>
           <Route
             path="/Profile"
