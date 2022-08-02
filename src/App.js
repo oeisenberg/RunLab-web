@@ -15,7 +15,7 @@ function App() {
 
   const queryRunLab = async (query, fcn) => {
     try {
-      await fetch("http://localhost:8080/Runlab/" + query)
+      await fetch("http://localhost:8080/" + query)
         .then((response) => {
           return response.json();
         })
@@ -42,11 +42,11 @@ function App() {
   
   useEffect(() => {
     if (userProfileData === null) {
-      queryRunLab("getAtheleteProfile", saveUserProfileData);
+      queryRunLab("strava-api/athelete/profile", saveUserProfileData);
     };
 
     if (userProfileData !== null && userStatisticsData === null) {
-        queryRunLab("getAtheleteStatistics/" + userProfileData.id, saveUserStatisticsData);
+        queryRunLab("strava-api/athelete/statistics/" + userProfileData.id, saveUserStatisticsData);
 
         // TODO: try figure out a better way of doing this
         if (userActivityData === null) {
@@ -54,7 +54,7 @@ function App() {
           date.setDate(date.getDate() - 28);
           // use date to get the last 4 wks of activity
     
-          queryRunLab("refresh", saveUserActivityData);
+          queryRunLab("strava-api/athelete/activities", saveUserActivityData);
         }
     }
   });
