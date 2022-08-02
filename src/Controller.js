@@ -45,7 +45,7 @@ function Controller() {
     async function setAuthenticationTokens(code) {
         var config = {
             method: 'post',
-            url: 'http://localhost:3000/Runlab/oauth',
+            url: 'http://localhost:3000/runlab/oauth',
             headers: { 
               'Content-Type': 'application/json',
             },
@@ -61,11 +61,11 @@ function Controller() {
         });
     }
 
-    if(isLoggedIn){
+    // if(isLoggedIn){
         return (<App />);
-    } else {
-        return <Register />;
-    }
+    // } else {
+        // return <Register />;
+    // }
     
 }
 
