@@ -1,72 +1,75 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import App from './App';
-import Register from './components/pages/Register';
-  
-async function makeQuery(config){
-    const promise = new Promise(function(resolve, reject){
-        axios(config)
-        .then(function (response) {
-            if (response.data.status !== 200){
-                console.log(response);
-                reject("Error");
-            } else {
-                resolve("Success");
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            reject("Error");
-        });
-    });
-    return promise;
+import React, { useState } from "react";
+import axios from "axios";
+import App from "./App";
+import Register from "./components/pages/Register";
+import SignIn from "./components/pages/SignIn";
+
+async function makeQuery(config, fcn) {
+  const promise = new Promise(function(resolve, reject) {
+    axios(config)
+      .then((response) => {
+        if (response.data.status !== 200) {
+          console.log(response);
+          reject("Error");
+        } else {
+          fcn(response.data.body);
+          resolve("Success");
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+        reject("Error");
+      });
+  });
+  return promise;
 }
 
 function Controller() {
-    const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    useEffect(() => {
-        console.log("isLoggedIn: " + isLoggedIn);
-        if (!isLoggedIn) {
-            try{
-                const url = window.location.search;
-                var r = url.split("&");
-                var code = r[1].split("=")[1];
-                // TODO:
-                // 1 - check correct scopes accepted
-                // var scopes = r[2].split("=")[1]; 
-                setAuthenticationTokens(code)
-            } catch (err){
-                // check cookies ?
-            }
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const saveJWT = (data) => {
+    sessionStorage.setItem("token", data);
+  }
+
+  async function setJWT() {
+    var config = {
+      method: "post",
+      url: "http://localhost:8080/runlab-api/v1/token/generate-token",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        username: username,
+        password: password,
+      },
+    };
+    return makeQuery(config, saveJWT).then(
+        function() {
+          setLoggedIn(true);
+          
+        },
+        function(err) {
+          setLoggedIn(false);
         }
-    });
+      );
+  }
 
-    async function setAuthenticationTokens(code) {
-        var config = {
-            method: 'post',
-            url: 'http://localhost:3000/Runlab/oauth',
-            headers: { 
-              'Content-Type': 'application/json',
-            },
-            data: {
-                'code':code
-            }
-        };
-        console.log(code)
-        return makeQuery(config).then(function(){
-            setLoggedIn(true);
-        }, function(err) {
-            setLoggedIn(false);
-        });
-    }
-
-    if(isLoggedIn){
-        return (<App />);
-    } else {
-        return <Register />;
-    }
-    
+  if (isLoggedIn) {
+    return <App />;
+  } else {
+    // return <Register />;
+    return <SignIn handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleSignIn={setJWT} />;
+  }
 }
 
 export default Controller;
