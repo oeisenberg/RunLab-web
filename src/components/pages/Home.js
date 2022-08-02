@@ -8,7 +8,7 @@ import Plot from "react-plotly.js";
 
 function Home(props) {
 
-  if (props.ActivityData === null) {
+  if (props.ActivityData === null || props.ActivityData === undefined) {
     return <div></div>;
   }
 
