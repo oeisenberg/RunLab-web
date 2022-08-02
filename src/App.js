@@ -69,6 +69,10 @@ function App() {
     return setUserStatisticsData(data);
   };
 
+  const saveUserActivityData = (data) => {
+    return setUserActivityData(data);
+  }
+
   return (
     <BrowserRouter>
       <Navbar Profile={userProfileData} />
