@@ -37,7 +37,7 @@ function App() {
       date.setDate(date.getDate() - 28);
       // use date to get the last 4 wks of activity
 
-      queryRunLab("athelete/activities", saveUserActivityData);
+      queryRunLab("athlete/activities", saveUserActivityData);
     }
   }, [userActivityData]);
 
