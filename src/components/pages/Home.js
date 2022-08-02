@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Navbar from '../layout/Navbar';
+import * as React from 'react'
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -23,7 +22,6 @@ export default function Home() {
 
     return(
         <div>
-            <Navbar />
             <h1>other conessssssssssssssssssssssssssssssnt</h1>
         </div>
     )
