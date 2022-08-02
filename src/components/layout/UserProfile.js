@@ -14,7 +14,7 @@ const StyledAvatar = styled(Avatar)`
 
 function UserProfile(props) {
 
-  if (props.Profile === null) {
+  if (props.Profile === undefined || props.Profile === null) {
     return (
       <Box sx={{mt:1, mr:4 }}>
         <Avatar/>

@@ -1,9 +1,11 @@
+import * as React from 'react'
 import "../../Styles.css";
 import React from "react";
 import CardSummary from "../layout/ActivitySummaryCard";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Plot from "react-plotly.js";
+
 
 function Home(props) {
 

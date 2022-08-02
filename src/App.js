@@ -1,6 +1,7 @@
 import "./Styles.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 import HomePage from "./components/pages/Home";
 import DashboardPage from "./components/pages/Dashboard";
 import RunsPage from "./components/pages/Runs/index";
@@ -10,58 +11,68 @@ import Navbar from "./components/layout/Navbar";
 
 function App() {
   const [userProfileData, setUserProfileData] = useState(null);
+
+  useEffect(() => {
+    if (userProfileData === null) {
+      queryRunLab("athlete/profile", saveUserProfileData);
+    }
+  }, []);
+
   const [userStatisticsData, setUserStatisticsData] = useState(null);
+
+  useEffect(() => {
+    if (userProfileData !== null) {
+      queryRunLab(
+        "athlete/statistics?ID=" + userProfileData.id,
+        saveUserStatisticsData
+      );
+    }
+  }, [userProfileData]);
+  
   const [userActivityData, setUserActivityData] = useState(null);
+  
+ useEffect(() => {
+      if (userActivityData === null) {
+        var date = new Date();
+        date.setDate(date.getDate() - 28);
+        // use date to get the last 4 wks of activity
+
+        queryRunLab("strava-api/athelete/activities", saveUserActivityData);
+      }
+  }
+  }, [userActivityData]);
+  
 
   const queryRunLab = async (query, fcn) => {
-    try {
-      await fetch("http://localhost:8080/" + query)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          fcn(data)
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    var config = {
+      method: "get",
+      url: "http://localhost:8080/runlab-api/v1/" + query,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
+      },
+    };
+
+    const promise = new Promise((resolve, reject) => {
+      axios(config).then((response) => {
+        fcn(response.data.body);
+      });
+    });
+
+    return promise;
   };
 
   const saveUserProfileData = (data) => {
-    setUserProfileData(data.body);
+    return setUserProfileData(data);
   };
 
   const saveUserStatisticsData = (data) => {
-    setUserStatisticsData(data.body);
+    return setUserStatisticsData(data);
   };
-
-  const saveUserActivityData = (data) => {
-    setUserActivityData(data.body);
-  };
-  
-  useEffect(() => {
-    if (userProfileData === null) {
-      queryRunLab("strava-api/athelete/profile", saveUserProfileData);
-    };
-
-    if (userProfileData !== null && userStatisticsData === null) {
-        queryRunLab("strava-api/athelete/statistics/" + userProfileData.id, saveUserStatisticsData);
-
-        // TODO: try figure out a better way of doing this
-        if (userActivityData === null) {
-          var date = new Date();
-          date.setDate(date.getDate() - 28);
-          // use date to get the last 4 wks of activity
-    
-          queryRunLab("strava-api/athelete/activities", saveUserActivityData);
-        }
-    }
-  });
 
   return (
     <BrowserRouter>
-      <Navbar Profile={userProfileData}/>
+      <Navbar Profile={userProfileData} />
       <div className="Page-Content">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
@@ -69,7 +80,10 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage ActivityData={userActivityData} />}></Route>
           <Route path="/Runs" element={<RunsPage ActivityData={userActivityData} />}></Route>
           <Route path="/About" element={<AboutPage />}></Route>
-          <Route path="/Profile" element={<ProfilePage Statistics={userStatisticsData}/>}></Route>
+          <Route
+            path="/Profile"
+            element={<ProfilePage Statistics={userStatisticsData} />}
+          ></Route>
         </Routes>
       </div>
     </BrowserRouter>
