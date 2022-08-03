@@ -29,4 +29,4 @@ yarn-error.log*
 node_modules
 
 # Ignore Keys
-mapbox.json
+keys.json
