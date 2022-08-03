@@ -25,7 +25,7 @@ export default function ActivitySummaryCard(props) {
                 {"startDateLocal: " + props.startDateLocal}
             </Typography>
             <Typography variant="h8" component="div" color="text.secondary">
-                {"Moving time: " + round(props.moving_time / 60, 1) + " mins"}
+                {"Moving time: " + round(props.movingTime / 60, 1) + " mins"}
             </Typography>
             <Typography variant="h8" component="div" color="text.secondary">
                 {"Elapsed time: " + round(props.elapsedTime / 60, 1) + " mins"}

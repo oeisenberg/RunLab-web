@@ -65,10 +65,10 @@ function Home(props) {
             key={key}
             title={idx+1 + ") " + props.ActivityData[key].name}
             distance={props.ActivityData[key].distance}
-            startDateLocal={props.ActivityData[key].startDateLocal}
-            movingTime={props.ActivityData[key].movingTime}
-            elapsedTime={props.ActivityData[key].elapsedTime}
-            sufferScore={props.ActivityData[key].suffer_Score}
+            startDateLocal={props.ActivityData[key].start_date_local}
+            movingTime={props.ActivityData[key].moving_time}
+            elapsedTime={props.ActivityData[key].elapsed_time}
+            sufferScore={props.ActivityData[key].suffer_score}
           />
         ))}
       </Stack>
