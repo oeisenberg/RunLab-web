@@ -2,12 +2,12 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Plot from "react-plotly.js";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Keys from '../../resources/keys.json';
+import polyline from '@mapbox/polyline';
 
 // https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-in-javascript
 function round(value, precision) {
@@ -15,7 +15,20 @@ function round(value, precision) {
     return Math.round(value * multiplier) / multiplier;
 }
 
+function calcAverage(values) {
+  const total = values.reduce((partialSum, v) => partialSum + v, 0);
+  return total / values.length
+}
+
 export default function ActivitySummaryCard(props) {
+
+  let latlng = [props.startLatLng];
+  if (props.polyline !== null) {
+    latlng = polyline.decode(props.polyline)
+  }
+
+  const lat = latlng.map(coord => coord[0])
+  const lng = latlng.map(coord => coord[1])
 
     return (
     <Card>
@@ -23,14 +36,16 @@ export default function ActivitySummaryCard(props) {
         data={[
           {
             type: "scattermapbox",
-            lat: [props.startLatLng[0]],
-            lon: [props.startLatLng[1]],
+            mode: 'lines',
+            lat: lat,
+            lon: lng,
           },
         ]}
         layout={{
           autosize: true,
           showlegend: false,
-          height: 140,
+          height: 200,
+          // width: 280,
           margin: {
             r: 0,
             t: 0,
@@ -41,11 +56,11 @@ export default function ActivitySummaryCard(props) {
           mapbox: {
             bearing: 0,
             center: {
-              lat: props.startLatLng[0],
-              lon: props.startLatLng[1],
+              lat: calcAverage(lat),
+              lon: calcAverage(lng),
             },
             pitch:0,
-            zoom:17
+            zoom:13 // think about auto zoom calc
           },
         }}
         config={{
