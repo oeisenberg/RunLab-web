@@ -76,6 +76,7 @@ export default function ActivitySummaryCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
+        {/* TODO: Link to a detialed view of this activity */}
         <Button size="small">More Details</Button>
       </CardActions>
     </Card>
